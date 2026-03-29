@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nueva Guía Tributaria - Chile | Buda.com</title>
+  <style>
+    :root {
+      --green: #5B5FEA;
+      --green-dark: #4448d6;
+      --green-light: #eeeffe;
+      --dark: #1A1A2A;
+      --text: #2d2d2d;
+      --text-light: #666;
+      --border: #e5e7eb;
+      --bg: #f9fafb;
+      --white: #fff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.7;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar img {
+      height: 36px;
+      display: block;
+    }
+
+    /* Header / Hero */
+    .hero {
+      background: linear-gradient(135deg, #1A1A2A 0%, #2d2f6e 100%);
+      color: white;
+      padding: 72px 24px 80px;
+      text-align: center;
+    }
+
+    .hero-icon {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 span {
+      color: #8b8ff5;
+    }
+
+    .hero-intro {
+      max-width: 720px;
+      margin: 0 auto 16px;
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .hero-disclaimer {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.55);
+      font-style: italic;
+    }
+
+    /* Layout */
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Table of contents */
+    .toc {
+      background: var(--green-light);
+      border-left: 4px solid var(--green);
+      border-radius: 0 12px 12px 0;
+      padding: 28px 32px;
+      margin: 48px 0 56px;
+    }
+
+    .toc-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--green-dark);
+      margin-bottom: 14px;
+    }
+
+    .toc ol {
+      padding-left: 20px;
+    }
+
+    .toc li {
+      margin-bottom: 6px;
+    }
+
+    .toc a {
+      color: var(--green-dark);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .toc a:hover {
+      text-decoration: underline;
+    }
+
+    /* Sections */
+    .section {
+      padding: 56px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section:last-of-type {
+      border-bottom: none;
+    }
+
+    .section-label {
+      display: inline-block;
+      background: var(--green);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+
+    h2.section-title {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-bottom: 24px;
+      color: var(--dark);
+    }
+
+    h3.subsection-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin: 36px 0 14px;
+    }
+
+    p {
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    strong {
+      font-weight: 600;
+    }
+
+    /* Lists */
+    ul.content-list, ol.content-list {
+      padding-left: 0;
+      list-style: none;
+      margin: 16px 0 20px;
+    }
+
+    ul.content-list li {
+      position: relative;
+      padding: 10px 16px 10px 44px;
+      margin-bottom: 8px;
+      background: var(--bg);
+      border-radius: 8px;
+      font-size: 0.975rem;
+    }
+
+    ul.content-list li::before {
+      content: "";
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    ol.content-list {
+      counter-reset: list-counter;
+    }
+
+    ol.content-list li {
+      position: relative;
+      padding: 14px 16px 14px 56px;
+      margin-bottom: 12px;
+      background: var(--bg);
+      border-radius: 10px;
+      font-size: 0.975rem;
+      counter-increment: list-counter;
+    }
+
+    ol.content-list li::before {
+      content: counter(list-counter);
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--green);
+      color: white;
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Callout / highlight box */
+    .callout {
+      border: 1.5px solid var(--green);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 24px 0;
+      background: var(--green-light);
+    }
+
+    .callout p:last-child {
+      margin-bottom: 0;
+    }
+
+    .callout-warning {
+      background: #fffbeb;
+      border-color: #f59e0b;
+    }
+
+    /* Method cards */
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 20px 0 24px;
+    }
+
+    .method-card {
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .method-card h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+
+    .method-card p {
+      font-size: 0.875rem;
+      color: var(--text-light);
+      margin: 0;
+    }
+
+    .method-card.highlight {
+      border-color: var(--green);
+      background: var(--green-light);
+    }
+
+    .method-card.highlight h4 {
+      color: var(--green-dark);
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-weight: 700;
+      margin-top: 8px;
+    }
+
+    .badge-green {
+      background: var(--green);
+      color: white;
+    }
+
+    .badge-yellow {
+      background: #f59e0b;
+      color: white;
+    }
+
+    /* Images */
+    .img-container {
+      margin: 28px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1.5px solid var(--border);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+
+    .img-container img {
+      width: 100%;
+      display: block;
+    }
+
+    .img-caption {
+      padding: 10px 16px;
+      font-size: 0.8rem;
+      color: var(--text-light);
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+    }
+
+    /* Info note */
+    .info-box {
+      display: flex;
+      gap: 14px;
+      padding: 18px 20px;
+      background: #eff6ff;
+      border: 1.5px solid #bfdbfe;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+
+    .info-box .info-icon {
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .info-box p {
+      margin: 0;
+      font-size: 0.925rem;
+      color: #1e3a8a;
+    }
+
+    .info-box a {
+      color: #1d4ed8;
+    }
+
+    /* CTA section */
+    .cta-section {
+      background: linear-gradient(135deg, #1A1A2A 0%, #2d2f6e 100%);
+      color: white;
+      padding: 64px 24px;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .cta-section p {
+      color: rgba(255,255,255,0.75);
+      max-width: 480px;
+      margin: 0 auto 28px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--green);
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 14px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .btn:hover {
+      background: var(--green-dark);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 24px;
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: var(--green);
+      text-decoration: none;
+    }
+
+    /* FAQ accordion */
+    .faq-section {
+      padding: 56px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .faq-item {
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+
+    .faq-item summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 18px 20px;
+      font-weight: 600;
+      font-size: 0.975rem;
+      color: var(--dark);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      user-select: none;
+    }
+
+    .faq-item summary::-webkit-details-marker { display: none; }
+
+    .faq-item summary::after {
+      content: "+";
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--green);
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+
+    .faq-item[open] summary::after {
+      content: "−";
+    }
+
+    .faq-item[open] {
+      border-color: var(--green);
+    }
+
+    .faq-body {
+      padding: 0 20px 20px;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    .faq-body p { margin-bottom: 12px; }
+    .faq-body p:last-child { margin-bottom: 0; }
+
+    .faq-body ul {
+      padding-left: 0;
+      list-style: none;
+      margin: 12px 0;
+    }
+
+    .faq-body ul li {
+      position: relative;
+      padding: 8px 12px 8px 32px;
+      margin-bottom: 6px;
+      background: var(--bg);
+      border-radius: 6px;
+      font-size: 0.925rem;
+    }
+
+    .faq-body ul li::before {
+      content: "";
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    /* ── Calculator ── */
+    .calc-section {
+      padding: 56px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .calc-intro {
+      color: var(--text-light);
+      margin-bottom: 28px;
+      font-size: 0.975rem;
+    }
+
+    .calc-table-wrapper {
+      overflow-x: auto;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 16px;
+    }
+
+    #movements-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    #movements-table thead th {
+      background: var(--bg);
+      padding: 12px 14px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-light);
+      border-bottom: 1.5px solid var(--border);
+      white-space: nowrap;
+    }
+
+    #movements-table tbody tr:not(:last-child) td {
+      border-bottom: 1px solid var(--border);
+    }
+
+    #movements-table tbody tr:hover td {
+      background: var(--green-light);
+    }
+
+    #movements-table td {
+      padding: 8px 10px;
+      vertical-align: middle;
+    }
+
+    #movements-table td.row-num {
+      color: var(--text-light);
+      font-size: 0.8rem;
+      text-align: center;
+      width: 32px;
+    }
+
+    #movements-table select,
+    #movements-table input[type="date"],
+    #movements-table input[type="number"] {
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 8px;
+      font-size: 0.875rem;
+      font-family: inherit;
+      color: var(--text);
+      background: var(--white);
+      outline: none;
+      width: 100%;
+      transition: border-color 0.15s;
+    }
+
+    #movements-table select:focus,
+    #movements-table input:focus {
+      border-color: var(--green);
+    }
+
+    #movements-table select { width: 110px; }
+    #movements-table input[type="date"] { width: 145px; }
+    #movements-table input[type="number"] { width: 130px; }
+
+    .td-total {
+      font-weight: 600;
+      white-space: nowrap;
+      color: var(--dark);
+      min-width: 140px;
+    }
+
+    .td-total.negative { color: #e53e3e; }
+
+    .btn-delete-row {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #ccc;
+      font-size: 1.1rem;
+      padding: 4px 6px;
+      border-radius: 4px;
+      transition: color 0.15s;
+      line-height: 1;
+    }
+
+    .btn-delete-row:hover { color: #e53e3e; }
+
+    .calc-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+
+    .btn-add-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--white);
+      border: 1.5px solid var(--green);
+      color: var(--green);
+      font-weight: 600;
+      font-size: 0.875rem;
+      padding: 9px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .btn-add-row:hover {
+      background: var(--green-light);
+    }
+
+    .btn-add-row:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .row-count-note {
+      font-size: 0.8rem;
+      color: var(--text-light);
+    }
+
+    /* Results */
+    .calc-results {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .result-card {
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 20px;
+      background: var(--white);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+
+    .result-card.best {
+      border-color: var(--green);
+      box-shadow: 0 4px 20px rgba(91, 95, 234, 0.15);
+    }
+
+    .result-badge {
+      position: absolute;
+      top: -11px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--green);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 2px 12px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .result-card-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-light);
+      margin-bottom: 4px;
+    }
+
+    .result-card-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 14px;
+    }
+
+    .result-card-name span {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: var(--text-light);
+      margin-top: 2px;
+    }
+
+    .result-amount {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--dark);
+    }
+
+    .result-amount.gain { color: #16a34a; }
+    .result-amount.loss { color: #e53e3e; }
+    .result-amount.zero { color: var(--text-light); }
+
+    .result-sublabel {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      margin-top: 4px;
+    }
+
+    .result-disclaimer {
+      font-size: 0.75rem;
+      color: #f59e0b;
+      margin-top: 8px;
+      padding: 4px 8px;
+      background: #fffbeb;
+      border-radius: 6px;
+    }
+
+    /* Detail table per method */
+    .calc-detail {
+      margin-top: 28px;
+    }
+
+    .method-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .method-tab {
+      padding: 8px 20px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: var(--white);
+      color: var(--text-light);
+      transition: all 0.15s;
+    }
+
+    .method-tab.active {
+      border-color: var(--green);
+      background: var(--green);
+      color: white;
+    }
+
+    .detail-table-wrapper {
+      overflow-x: auto;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+    }
+
+    .detail-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+
+    .detail-table th {
+      background: var(--bg);
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-light);
+      border-bottom: 1.5px solid var(--border);
+      white-space: nowrap;
+    }
+
+    .detail-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    .detail-table tr:last-child td { border-bottom: none; }
+    .detail-table tr.is-sell td { background: #fafafa; }
+
+    .tag-buy {
+      display: inline-block;
+      background: #dcfce7;
+      color: #15803d;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+
+    .tag-sell {
+      display: inline-block;
+      background: #fee2e2;
+      color: #b91c1c;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+
+    .gain-cell { color: #16a34a; font-weight: 600; }
+    .loss-cell { color: #e53e3e; font-weight: 600; }
+    .dash-cell { color: #ccc; }
+
+    .detail-total-row td {
+      font-weight: 700;
+      background: var(--green-light);
+      border-top: 2px solid var(--green);
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .hero { padding: 48px 20px 56px; }
+      .section { padding: 40px 0; }
+      .method-grid { grid-template-columns: 1fr; }
+      .calc-results { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <img src="images/buda_logo.png" alt="Buda.com" />
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <span class="hero-icon">📖</span>
+    <h1>Nueva Guía Tributaria<br><span>Chile</span></h1>
+    <p class="hero-intro">
+      Sabemos que el tema de los impuestos es algo que preocupa y complica a muchos de nuestros usuarios, y no es para menos… es por eso que hemos creado esta guía tributaria para poder ayudarlos de manera lo más sencilla y completa posible. Aquí encontrarás respuesta a preguntas como: cuándo se debe declarar, cómo hacer la declaración en el SII, cómo hacer el cálculo de mis ganancias, entre otras preguntas frecuentes. Incluso presentaremos y explicaremos el nuevo "Reporte de Ganancias/Pérdidas" que está disponible en nuestra web para ayudar a nuestros usuarios en el proceso de informar sus ingresos.
+    </p>
+    <p class="hero-disclaimer">Esta guía no es una asesoría tributaria, pero esperamos que te ayude a entender un poco mejor cómo enfrentar el tema.</p>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="container">
+
+    <!-- TABLE OF CONTENTS -->
+    <div class="toc">
+      <p class="toc-title">Contenido</p>
+      <ol>
+        <li><a href="#operacion-renta">Operación Renta: ¿Cuándo debo declarar?</a></li>
+        <li><a href="#reporte">El Reporte de Ganancias/Pérdidas en Buda.com</a></li>
+        <li><a href="#declaracion">¿Cómo hacer la declaración?</a></li>
+        <li><a href="#calculadora">Calculadora de Ganancias</a></li>
+        <li><a href="#faq">Preguntas Frecuentes</a></li>
+      </ol>
+    </div>
+
+    <!-- SECTION 1 -->
+    <div class="section" id="operacion-renta">
+      <span class="section-label">Operación Renta</span>
+      <h2 class="section-title">¿Qué y en qué casos tengo que declarar por mis criptomonedas?</h2>
+
+      <p>Cada año, en abril, se realiza la <strong>Operación Renta</strong> en Chile. En ese proceso, las personas y empresas (esto es: personas naturales o jurídicas domiciliadas o residentes en Chile) deben declarar sus ingresos del año anterior. Luego, el SII revisa tu declaración, ve en qué escalafón quedas, si calificas para algún beneficio tributario, si tienes APV, etc. y finalmente determina si aún debes pagar impuestos o si te deben devolver plata.</p>
+
+      <p>Pero entonces, ¿debo declarar algún ingreso relacionado a mis criptomonedas? La respuesta corta es: <strong>sí, pero sólo si obtuviste ganancias como resultado de una o más ventas (enajenación) de criptomonedas.</strong></p>
+
+      <p>Esto quiere decir que <strong>NO debes declarar</strong> si:</p>
+
+      <ul class="content-list">
+        <li>Durante el año tributario sólo compraste criptomonedas (no hiciste ventas).</li>
+        <li>Sólo mantuviste criptos en tus billeteras (sin importar si el precio de éstas subió o bajó).</li>
+        <li>Las has transferido entre tus propias wallets (aunque puede requerirse respaldo si el SII lo solicita).</li>
+      </ul>
+
+      <p>En otras palabras, lo que el SII necesita saber, es cuánta plata <strong>ganaste</strong> por concepto de operaciones de venta de criptoactivos durante el año anterior. Y aquí aparece la gran pregunta…</p>
+
+      <h3 class="subsection-title">¿Cuánto fueron mis ingresos por efectos de las ventas de mis criptomonedas?</h3>
+
+      <p>Esta es una pregunta nada fácil de responder, de hecho, hay varias formas de responderla… por algo existen expertos en asesoría tributaria que pueden ayudarte a hacer el cálculo en caso de que éste se vuelva demasiado complejo. Y es probable que se vuelva complejo, sobre todo si tienes demasiadas operaciones con criptomonedas.</p>
+
+      <p>El resultado que obtienes de una venta de criptomonedas corresponde a lo que ganas (o pierdes) por efectos de "mayor o menor valor", es decir, por la diferencia entre el precio de la venta y el precio de adquisición de lo que vendiste. Pero, ¿cuál es el precio de adquisición de lo que vendí? Esa es la verdadera pregunta, y para responderla, pongamos la siguiente analogía:</p>
+
+      <div class="callout">
+        <p>Imagina que tu billetera de Bitcoin (o cualquier cripto) es como una <strong>piscina.</strong> Cada vez que entra Bitcoin en tu billetera (por una compra o por un abono), es como si echaras un balde de agua a esa piscina. El problema es que cada balde lo compraste a un precio distinto, y toda el agua se mezcla, entonces, cuando decides sacar un balde para venderlo, no sabes exactamente cuál estás sacando.</p>
+      </div>
+
+      <p>Entonces, cuando vendes, ¿a qué precio compraste el Bitcoin que estás vendiendo?</p>
+
+      <p>Como no podemos distinguir físicamente qué Bitcoin específico salió (porque cada cuenta contable funciona como una billetera con saldo total, no como una lista de lotes separados por precio), lo que se hace es <strong>definir una forma de ordenarlo</strong>. Es una convención contable para valorizar un inventario y existen distintos métodos para hacerlo.</p>
+
+      <h3 class="subsection-title">¿Qué métodos existen?</h3>
+
+      <p>La ley permite los siguientes métodos para valorizar inventarios. Se puede elegir cualquier método, <strong>pero la ley exige mantenerlo por al menos 5 años.</strong></p>
+
+      <div class="method-grid">
+        <div class="method-card highlight">
+          <h4>FIFO</h4>
+          <p><em>First In, First Out:</em> lo primero que entra al inventario es lo primero que se vende. Es decir, se vende de lo más antiguo a lo más nuevo.</p>
+          <span class="badge badge-green">Método usado por Buda.com</span>
+        </div>
+        <div class="method-card">
+          <h4>LIFO</h4>
+          <p><em>Last In, First Out:</em> lo último que entra es lo primero que se vende. Es decir, se vende de lo más nuevo a lo más antiguo.</p>
+        </div>
+        <div class="method-card">
+          <h4>Costo Promedio Ponderado</h4>
+          <p>Se calcula un precio promedio ponderado de todas tus compras hasta el momento de la venta. <strong>No es aceptado por el SII para personas naturales, sólo para empresas.</strong></p>
+          <span class="badge badge-yellow">Solo empresas</span>
+        </div>
+        <div class="method-card">
+          <h4>Elección por venta</h4>
+          <p>Incluso se puede "elegir" en cada venta qué criptos vendiste, siempre con el cuidado de no vender dos veces lo mismo. Eso sí, es mucho más complicado de explicar y <strong>sólo sirve para personas naturales.</strong></p>
+        </div>
+      </div>
+
+      <div class="callout callout-warning">
+        <p><strong>Cada método puede dar resultados distintos en el cálculo de la ganancia.</strong></p>
+      </div>
+
+      <p>¿Suena complejo?…</p>
+    </div>
+
+    <!-- SECTION 2 -->
+    <div class="section" id="reporte">
+      <span class="section-label">Novedad 2026</span>
+      <h2 class="section-title">¡Buenas noticias! Ya está disponible el "Reporte de Ganancias/Pérdidas" en Buda.com</h2>
+
+      <p>Este año (2026) hemos lanzado un proyecto piloto el cual consiste en darle a nuestros usuarios la posibilidad de descargar, desde la sección Historial de su cuenta, un documento en PDF que contiene un "Reporte de Ganancias/Pérdidas". En éste se detallan las ventas que se hicieron durante el año anterior y cuál fue la ganancia (o pérdida) obtenida en cada una.</p>
+
+      <p>Para los cálculos, <strong><u>decidimos usar la metodología FIFO,</u></strong> debido a que es una metodología ampliamente usada, más fácil de explicar en comparación con las otras y puede ser usada por cualquier tipo de contribuyente.</p>
+
+      <div class="callout">
+        <p>Volviendo al ejemplo de la piscina: Si el primer balde de 1 litro que echaste costó $300 y el segundo costó $500, y luego vendes 1,5 litros, el método FIFO asume que 1 litro corresponde al balde de $300 y 0,5 al balde de $500. Por lo tanto, si vendiste los 1,5 lts a $600, la ganancia se calcula como: <strong>600 - (1×300 + 0,5×500) = $600 - $550 = $50.</strong></p>
+      </div>
+
+      <p>Es decir, las ventas van "consumiendo" las compras desde las más antiguas a las más nuevas. Con ese orden podemos calcular de manera consistente tus ganancias o pérdidas.</p>
+
+      <p>Algo importante a aclarar, es que el cálculo del FIFO en el documento, y el hecho de que una venta "consuma" los BTCs de ciertas compras, no es algo que suceda "realmente" (es decir, NO es que contablemente se consuman exactamente esos BTC), sino que el reporte es <strong>sólo una de las formas de calcular las ganancias del usuario, tú podrías elegir otra si te acomoda.</strong></p>
+
+      <h3 class="subsection-title">1. ¿Cómo funciona el FIFO del reporte?</h3>
+
+      <p>En resumen, el algoritmo que se ejecuta para poder generar el reporte consiste en lo siguiente:</p>
+
+      <ul class="content-list">
+        <li>Crea un inventario para cada criptomoneda, es decir, el FIFO se aplica de forma independiente para cada cripto.</li>
+        <li>Toma todas tus compras, ventas, depósitos y retiros de criptomonedas en orden cronológico, para luego ir "recorriendo" la historia desde el inicio hasta el final.</li>
+        <li>Cada compra o depósito agrega un "lote" al inventario de la criptomoneda correspondiente, con: cantidad adquirida, fecha de la operación, y costo en CLP.</li>
+        <li>Cuando se produce una venta o retiro, se considera que los primeros activos adquiridos son los primeros en venderse/retirarse.</li>
+        <li>Sólo las ventas generan ganancias/pérdidas, mientras que los retiros hacia billeteras externas sólo disminuyen el inventario. (Es responsabilidad del contribuyente informar si hubo ganancias originadas por ventas de los activos retirados realizadas en otras plataformas)</li>
+        <li>La ganancia o pérdida de cada venta se determina como: <strong>Ganancia = Precio de Venta (CLP) - Costo de Adquisición (CLP).</strong></li>
+      </ul>
+
+      <p><strong>Además:</strong></p>
+
+      <ul class="content-list">
+        <li>Se ajusta el precio de adquisición según IPC, usando la variación entre el IPC del mes anterior a cada compra y el mes anterior a cada venta (como exige la normativa chilena).</li>
+        <li>La ganancia de cada venta se ajusta al cierre del año usando la variación entre el IPC del mes anterior a cada venta y el de diciembre del año correspondiente.</li>
+        <li>Finalmente se calcula la ganancia o pérdida total del período.</li>
+      </ul>
+
+      <p>Si necesitas saber en detalle cómo se hace la valorización de las operaciones para obtener los precios de adquisición, en el reporte encontrarás la explicación completa de la lógica utilizada para cada tipo de transacción.</p>
+
+      <h3 class="subsection-title">2. ¿Y las comisiones?</h3>
+
+      <p>Las comisiones cobradas por la plataforma constituyen un costo asociado a la operación, pero no forman parte del precio de adquisición ni reducen el valor de enajenación para efectos del cálculo informado en el documento. Esto quiere decir que:</p>
+
+      <ul class="content-list">
+        <li>Las ganancias o pérdidas informadas se determinan utilizando los valores brutos de transacción.</li>
+        <li>Las comisiones no se incorporan al costo tributario del activo ni disminuyen el precio de venta en el cálculo presentado.</li>
+      </ul>
+
+      <h3 class="subsection-title">3. ¿Qué pasa si uso Objetivos?</h3>
+
+      <p>Objetivos es un producto de <a href="http://buda.com/">Buda.com</a> que permite separar saldos y ordenar tus criptos según distintos propósitos. Por eso, comprar criptos a través de Objetivos equivale a tener una "piscina" separada de la Billetera.</p>
+
+      <p>Eso significa que:</p>
+
+      <ul class="content-list">
+        <li>La Billetera tiene su propio FIFO.</li>
+        <li>Cada Objetivo tiene su propio FIFO.</li>
+        <li>Si hay traspasos entre la billetera ↔ objetivos, los lotes FIFO se mueven completos, manteniendo las fechas de las operaciones originales.</li>
+      </ul>
+
+      <p>Cuando generas tu reporte de ganancias, aplicamos el método FIFO por separado dentro de cada una de estas "piscinas", siempre diferenciando por moneda.</p>
+
+      <h3 class="subsection-title">4. Contenido del documento</h3>
+
+      <p>En el documento encontrarás la siguiente información:</p>
+
+      <ul class="content-list">
+        <li>Un resumen con las ganancias o pérdidas por criptomoneda del año reportado según el método FIFO. El total ganado el año anterior (el ajustado al cierre de año) es el número que tendrías que poner en tu declaración.</li>
+        <li>Un detalle con cada venta realizada en el año junto con su ganancia (o pérdida), con un detalle, a su vez, de las operaciones de compra o depósito consideradas en cada venta, con sus fechas y montos.</li>
+        <li>Un apéndice con la explicación detallada de la metodología y lógicas de valorización.</li>
+        <li>Un apéndice con las cartolas de cada billetera cripto del usuario que hayan tenido movimientos durante el año reportado.</li>
+        <li>Un apéndice con la información del usuario que Buda envía al SII en la DJ.</li>
+      </ul>
+
+      <p>El documento se enviará al email registrado en tu cuenta para que puedas descargarlo en formato PDF y revisarlo.</p>
+
+      <p>Es tu responsabilidad verificar que los cálculos estén correctos y que lo reportado calce 100% con la realidad, y si no, rectificar el número final. Por ejemplo, si vendiste criptos que obtuviste en otra plataforma, nosotros no tenemos cómo saber a qué precio las adquiriste, por lo que no tendríamos toda la información y lo reportado no sería 100% veraz. En ese caso tú tendrías que re hacer el cálculo con los precios de adquisición correctos.</p>
+
+      <div class="info-box">
+        <span class="info-icon">💡</span>
+        <p><strong>Si tú eres uno de estos casos donde hay operaciones fuera de Buda, has hecho abonos desde otras plataformas, o si tu volumen de operaciones es muy alto y requiere un procesamiento más avanzado, lo más seguro es que el Reporte de Ganancias/Pérdidas no te sirva.</strong> En esa situación, te recomendamos utilizar una herramienta externa especializada. Nosotros confiamos en Ledgifi, puedes saber más información en: <a href="https://ledgifi.com/chile" target="_blank">https://ledgifi.com/chile</a></p>
+      </div>
+
+      <h3 class="subsection-title">5. Quiero hacerlo con otro método</h3>
+
+      <p>Si quieres hacer el cálculo de las ganancias usando otro método o simplemente quieres corroborar que el Reporte de Ganancias/Pérdidas esté 100% correcto, puedes descargar todos tus movimientos de la siguiente manera:</p>
+
+      <ol class="content-list">
+        <li><strong>Accede a tu cuenta:</strong> Entra a <a href="http://buda.com/">Buda.com</a> desde tu navegador y dirígete a cualquier billetera mostrada en la página de inicio.</li>
+        <li>
+          <strong>Consulta tus movimientos:</strong> Dentro de la billetera, ve a la sección "Movimientos" para ver el detalle de todas tus transacciones. Ahí encontrarás el botón "Generar Planilla", que al seleccionarlo, te permitirá recibir por correo un documento con todos tus movimientos.
+          <div class="img-container" style="margin-top: 16px;">
+            <img src="images/movimientos.png" alt="Captura de pantalla del botón Generar Planilla en Buda.com" />
+            <p class="img-caption">Botón "Generar Planilla" dentro de la sección Movimientos</p>
+          </div>
+        </li>
+        <li><strong>Revisa tu correo:</strong> En pocos minutos, recibirás un email de <a href="http://buda.com/">Buda.com</a> con un enlace para descargar la planilla Excel, que incluirá todos los movimientos de tus monedas.</li>
+      </ol>
+
+      <p>Siguiendo estos pasos, podrás tener a mano todos tus movimientos de criptomonedas para poder hacer tú mismo el cálculo.</p>
+    </div>
+
+    <!-- SECTION 3 -->
+    <div class="section" id="declaracion">
+      <span class="section-label">Formulario F22</span>
+      <h2 class="section-title">¿Cómo hacer la declaración?</h2>
+
+      <p>En abril de cada año, tendrás que ingresar el monto calculado de tu ganancia en el formulario F22, el mismo en donde declaras tus impuestos anuales ante el SII. Debes poner el monto que calculaste (ya sea usando el Reporte de Ganancias generado en Buda o con otro método, y agregando los ingresos generados en otras plataformas si aplica) en la <strong>casilla 1032</strong> de la sección "Base Imponible IUSC o IGC o IA", sub-sección "Tipos de rentas y rebajas".</p>
+
+      <div class="img-container">
+        <img src="images/formulario-f22.png" alt="Captura del formulario F22 - casilla 1032" />
+        <p class="img-caption">Casilla 1032 en el formulario F22 del SII — sección "Tipos de rentas y rebajas"</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CALCULATOR -->
+  <div class="container">
+    <div class="calc-section" id="calculadora">
+      <span class="section-label">Herramienta</span>
+      <h2 class="section-title" style="margin-bottom:10px;">Calculadora de Ganancias</h2>
+      <p class="calc-intro">Simula tus movimientos de compra y venta de Bitcoin y compara cómo cambia tu ganancia tributaria según el método elegido. La tabla es editable: modifica los valores o agrega tus propias operaciones.</p>
+
+      <div class="calc-table-wrapper">
+        <table id="movements-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Tipo</th>
+              <th>Fecha</th>
+              <th>Cantidad (BTC)</th>
+              <th>Precio / BTC (CLP)</th>
+              <th>Total (CLP)</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="movements-body"></tbody>
+        </table>
+      </div>
+
+      <div class="calc-actions">
+        <button class="btn-add-row" id="btn-add-row">＋ Agregar movimiento</button>
+        <span class="row-count-note" id="row-count-note"></span>
+      </div>
+
+      <!-- Summary cards -->
+      <div class="calc-results" id="calc-results"></div>
+
+      <!-- Detail by method -->
+      <div class="calc-detail" id="calc-detail">
+        <div class="method-tabs" id="method-tabs">
+          <button class="method-tab active" data-method="fifo">FIFO</button>
+          <button class="method-tab" data-method="lifo">LIFO</button>
+          <button class="method-tab" data-method="cpp">CPP</button>
+        </div>
+        <div class="detail-table-wrapper">
+          <table class="detail-table">
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Fecha</th>
+                <th>Cantidad (BTC)</th>
+                <th>Precio venta / BTC</th>
+                <th>Costo adquisición</th>
+                <th>Ganancia / Pérdida</th>
+              </tr>
+            </thead>
+            <tbody id="detail-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    const MAX_ROWS = 10;
+
+    // ── Default example data ──
+    const DEFAULT_ROWS = [
+      { type: 'buy',  date: '2024-01-15', qty: 0.5,  price: 25000000 },
+      { type: 'buy',  date: '2024-03-20', qty: 0.3,  price: 30000000 },
+      { type: 'sell', date: '2024-05-10', qty: 0.4,  price: 35000000 },
+      { type: 'buy',  date: '2024-07-08', qty: 0.2,  price: 28000000 },
+      { type: 'sell', date: '2024-09-25', qty: 0.3,  price: 40000000 },
+    ];
+
+    const tbody = document.getElementById('movements-body');
+    const btnAdd = document.getElementById('btn-add-row');
+    const rowCountNote = document.getElementById('row-count-note');
+
+    // ── Formatting helpers ──
+    function fmtCLP(n) {
+      if (n === null || n === undefined || isNaN(n)) return '—';
+      const abs = Math.abs(n);
+      const formatted = abs.toLocaleString('es-CL', { maximumFractionDigits: 0 });
+      return (n < 0 ? '−' : '') + '$' + formatted;
+    }
+
+    function fmtBTC(n) {
+      return n.toLocaleString('es-CL', { minimumFractionDigits: 2, maximumFractionDigits: 8 });
+    }
+
+    // ── Row management ──
+    function getRows() {
+      const rows = [];
+      tbody.querySelectorAll('tr').forEach(tr => {
+        const type  = tr.querySelector('.sel-type').value;
+        const date  = tr.querySelector('.inp-date').value;
+        const qty   = parseFloat(tr.querySelector('.inp-qty').value) || 0;
+        const price = parseFloat(tr.querySelector('.inp-price').value) || 0;
+        rows.push({ type, date, qty, price });
+      });
+      return rows;
+    }
+
+    function updateRowNumbers() {
+      tbody.querySelectorAll('tr').forEach((tr, i) => {
+        tr.querySelector('.row-num').textContent = i + 1;
+      });
+      const count = tbody.querySelectorAll('tr').length;
+      btnAdd.disabled = count >= MAX_ROWS;
+      rowCountNote.textContent = count >= MAX_ROWS ? 'Máximo de 10 movimientos alcanzado.' : count + ' / ' + MAX_ROWS + ' movimientos';
+    }
+
+    function updateTotal(tr) {
+      const qty   = parseFloat(tr.querySelector('.inp-qty').value) || 0;
+      const price = parseFloat(tr.querySelector('.inp-price').value) || 0;
+      const type  = tr.querySelector('.sel-type').value;
+      const total = qty * price;
+      const tdTotal = tr.querySelector('.td-total');
+      tdTotal.textContent = total > 0 ? fmtCLP(total) : '—';
+      tdTotal.classList.toggle('negative', type === 'sell');
+    }
+
+    function addRow(data, animate) {
+      const count = tbody.querySelectorAll('tr').length;
+      if (count >= MAX_ROWS) return;
+
+      const d = data || { type: 'buy', date: '', qty: '', price: '' };
+      const tr = document.createElement('tr');
+      if (animate) tr.style.animation = 'fadeIn 0.25s ease';
+
+      tr.innerHTML = `
+        <td class="row-num"></td>
+        <td>
+          <select class="sel-type">
+            <option value="buy"${d.type==='buy'?' selected':''}>🟢 Compra</option>
+            <option value="sell"${d.type==='sell'?' selected':''}>🔴 Venta</option>
+          </select>
+        </td>
+        <td><input type="date" class="inp-date" value="${d.date}" /></td>
+        <td><input type="number" class="inp-qty" placeholder="0.00" min="0" step="any" value="${d.qty}" /></td>
+        <td><input type="number" class="inp-price" placeholder="0" min="0" step="1" value="${d.price}" /></td>
+        <td class="td-total">—</td>
+        <td><button class="btn-delete-row" title="Eliminar fila">✕</button></td>
+      `;
+
+      tr.querySelector('.btn-delete-row').addEventListener('click', () => {
+        tr.remove();
+        updateRowNumbers();
+        recalculate();
+      });
+
+      ['sel-type','inp-qty','inp-price','inp-date'].forEach(cls => {
+        tr.querySelector('.' + cls).addEventListener('input', () => {
+          updateTotal(tr);
+          recalculate();
+        });
+      });
+
+      tbody.appendChild(tr);
+      updateTotal(tr);
+      updateRowNumbers();
+    }
+
+    // ── Calculation engines ──
+    function sortedRows() {
+      return getRows()
+        .filter(r => r.date && r.qty > 0 && r.price > 0)
+        .sort((a, b) => a.date.localeCompare(b.date));
+    }
+
+    function calcFIFO(rows) {
+      // queue: [{qty, price}]
+      const queue = [];
+      const details = [];
+      let totalGain = 0;
+
+      rows.forEach(r => {
+        if (r.type === 'buy') {
+          queue.push({ qty: r.qty, price: r.price });
+          details.push({ ...r, costBasis: null, gain: null });
+        } else {
+          // sell
+          let remaining = r.qty;
+          let totalCost = 0;
+          while (remaining > 1e-10 && queue.length > 0) {
+            const lot = queue[0];
+            const used = Math.min(lot.qty, remaining);
+            totalCost += used * lot.price;
+            lot.qty -= used;
+            remaining -= used;
+            if (lot.qty < 1e-10) queue.shift();
+          }
+          const gain = r.qty * r.price - totalCost;
+          totalGain += gain;
+          details.push({ ...r, costBasis: totalCost, gain });
+        }
+      });
+      return { totalGain, details };
+    }
+
+    function calcLIFO(rows) {
+      // stack: [{qty, price}]
+      const stack = [];
+      const details = [];
+      let totalGain = 0;
+
+      rows.forEach(r => {
+        if (r.type === 'buy') {
+          stack.push({ qty: r.qty, price: r.price });
+          details.push({ ...r, costBasis: null, gain: null });
+        } else {
+          let remaining = r.qty;
+          let totalCost = 0;
+          while (remaining > 1e-10 && stack.length > 0) {
+            const lot = stack[stack.length - 1];
+            const used = Math.min(lot.qty, remaining);
+            totalCost += used * lot.price;
+            lot.qty -= used;
+            remaining -= used;
+            if (lot.qty < 1e-10) stack.pop();
+          }
+          const gain = r.qty * r.price - totalCost;
+          totalGain += gain;
+          details.push({ ...r, costBasis: totalCost, gain });
+        }
+      });
+      return { totalGain, details };
+    }
+
+    function calcCPP(rows) {
+      let totalQty = 0;
+      let totalCost = 0;
+      const details = [];
+      let totalGain = 0;
+
+      rows.forEach(r => {
+        if (r.type === 'buy') {
+          totalCost = totalCost + r.qty * r.price;
+          totalQty += r.qty;
+          details.push({ ...r, costBasis: null, gain: null });
+        } else {
+          const avgCost = totalQty > 0 ? totalCost / totalQty : 0;
+          const cost = r.qty * avgCost;
+          const gain = r.qty * r.price - cost;
+          totalGain += gain;
+          totalCost -= cost;
+          totalQty -= r.qty;
+          if (totalQty < 0) totalQty = 0;
+          if (totalCost < 0) totalCost = 0;
+          details.push({ ...r, costBasis: cost, gain });
+        }
+      });
+      return { totalGain, details };
+    }
+
+    // ── Render results ──
+    let activeMethod = 'fifo';
+    let lastResults = {};
+
+    function renderCards(results) {
+      const container = document.getElementById('calc-results');
+      const methods = [
+        { key: 'fifo', name: 'FIFO', sub: 'Primera entrada, primera salida', note: null },
+        { key: 'lifo', name: 'LIFO', sub: 'Última entrada, primera salida', note: null },
+        { key: 'cpp',  name: 'CPP',  sub: 'Costo Promedio Ponderado', note: '⚠️ Solo válido para empresas' },
+      ];
+
+      // find best (highest gain) among fifo/lifo only
+      const gains = methods.map(m => results[m.key]?.totalGain ?? 0);
+      const maxGain = Math.max(gains[0], gains[1]);
+
+      container.innerHTML = methods.map((m, i) => {
+        const g = results[m.key]?.totalGain;
+        const isBest = (m.key !== 'cpp') && Math.abs(g - maxGain) < 0.01;
+        const gainClass = g > 0 ? 'gain' : g < 0 ? 'loss' : 'zero';
+        return `
+          <div class="result-card${isBest ? ' best' : ''}">
+            ${isBest ? '<div class="result-badge">Mayor ganancia declarada</div>' : ''}
+            <div class="result-card-label">Método</div>
+            <div class="result-card-name">${m.name}<span>${m.sub}</span></div>
+            <div class="result-amount ${gainClass}">${fmtCLP(g)}</div>
+            <div class="result-sublabel">Ganancia total estimada</div>
+            ${m.note ? `<div class="result-disclaimer">${m.note}</div>` : ''}
+          </div>`;
+      }).join('');
+    }
+
+    function renderDetail(method, results) {
+      const detailBody = document.getElementById('detail-body');
+      const data = results[method];
+      if (!data) { detailBody.innerHTML = ''; return; }
+
+      let totalGain = 0;
+      const rows = data.details.map(r => {
+        if (r.type === 'sell') totalGain += r.gain;
+        const isSell = r.type === 'sell';
+        const gainStr = isSell
+          ? `<span class="${r.gain >= 0 ? 'gain-cell' : 'loss-cell'}">${fmtCLP(r.gain)}</span>`
+          : `<span class="dash-cell">—</span>`;
+        const costStr = isSell ? fmtCLP(r.costBasis) : `<span class="dash-cell">—</span>`;
+        const priceStr = isSell ? fmtCLP(r.price) : `<span class="dash-cell">—</span>`;
+        return `<tr class="${isSell ? 'is-sell' : ''}">
+          <td><span class="${isSell ? 'tag-sell' : 'tag-buy'}">${isSell ? 'Venta' : 'Compra'}</span></td>
+          <td>${r.date}</td>
+          <td>${fmtBTC(r.qty)} BTC</td>
+          <td>${priceStr}</td>
+          <td>${costStr}</td>
+          <td>${gainStr}</td>
+        </tr>`;
+      });
+
+      const totalClass = totalGain >= 0 ? 'gain-cell' : 'loss-cell';
+      rows.push(`<tr class="detail-total-row">
+        <td colspan="5" style="text-align:right; padding-right:14px;">Total ganancia / pérdida del período</td>
+        <td><span class="${totalClass}">${fmtCLP(totalGain)}</span></td>
+      </tr>`);
+
+      detailBody.innerHTML = rows.join('');
+    }
+
+    function recalculate() {
+      const rows = sortedRows();
+      lastResults = {
+        fifo: calcFIFO([...rows]),
+        lifo: calcLIFO([...rows]),
+        cpp:  calcCPP([...rows]),
+      };
+      renderCards(lastResults);
+      renderDetail(activeMethod, lastResults);
+    }
+
+    // ── Tab switching ──
+    document.getElementById('method-tabs').addEventListener('click', e => {
+      const tab = e.target.closest('.method-tab');
+      if (!tab) return;
+      document.querySelectorAll('.method-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      activeMethod = tab.dataset.method;
+      renderDetail(activeMethod, lastResults);
+    });
+
+    // ── Add row button ──
+    btnAdd.addEventListener('click', () => {
+      addRow(null, true);
+      recalculate();
+    });
+
+    // ── Init ──
+    DEFAULT_ROWS.forEach(r => addRow(r, false));
+    recalculate();
+  })();
+  </script>
+
+  <style>
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+  </style>
+
+  <!-- FAQ -->
+  <div class="container">
+    <div class="faq-section" id="faq">
+      <span class="section-label">FAQ</span>
+      <h2 class="section-title" style="margin-bottom: 28px;">Preguntas Frecuentes</h2>
+
+      <details class="faq-item">
+        <summary>¿Qué pasa si no vendí nada durante el año a reportar?</summary>
+        <div class="faq-body">
+          <p>Entonces no hay ganancia y no debes declarar nada.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Qué pasa con otro tipo de operaciones realizadas durante el año a reportar?</summary>
+        <div class="faq-body">
+          <p>Lo que hay que descubrir acá es cuándo se produce un equivalente a una venta o enajenación.</p>
+          <ul>
+            <li><strong>Si compraste cripto con otra cripto:</strong> entonces es equivalente a haber vendido y luego haber comprado. Debes declarar la venta tomando el precio convertido a CLP y luego acordarte de que la nueva compra ahora tiene ese costo en CLP (que usarás en la declaración de cuando vendas las nuevas criptos). Esta misma lógica se aplica en el Reporte de Ganancias/Pérdidas.</li>
+            <li><strong>Pagué con cripto:</strong> Es equivalente a vender al precio del momento.</li>
+            <li><strong>Te pagaron con cripto:</strong> No debes declarar nada (es equivalente a haber comprado), pero sí debes declarar cuando las vendas (y el costo será el equivalente en CLP del momento en que te pagaron).</li>
+            <li><strong>Donaste cripto:</strong> Dependerá de si se verifican los requisitos de la entidad beneficiaria para efectos de los beneficios tributarios a las donaciones o no.</li>
+            <li><strong>Si compraste pero no has vendido:</strong> No hay ganancia, y no hay nada que declarar.</li>
+            <li><strong>Recibes criptomonedas minadas:</strong> Aplica lo mismo que en el caso "Te pagaron con cripto". Para valorizar las criptos minadas, debes considerar el precio promedio del mercado en pesos del momento en que se minaron.</li>
+            <li><strong>Te regalaron cripto:</strong> La misma lógica.</li>
+            <li><strong>Regalas cripto:</strong> Nada, si es que es menos de 5 UTM (sobre eso, debes asesorarte).</li>
+          </ul>
+          <p>Cabe volver a mencionar que nosotros no sabemos si, por ejemplo, un retiro cripto que hiciste desde Buda fue para pagar algo, por lo que es tu responsabilidad como contribuyente hacer el cálculo de cuánto ganaste al pagar con esas cripto.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Qué pasa si hice operaciones en otros exchanges?</summary>
+        <div class="faq-body">
+          <p>Debes hacer lo mismo que con Buda, es tu obligación declarar las ganancias, independiente de donde realizaste las compras o ventas.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Qué pasa con las stablecoins?</summary>
+        <div class="faq-body">
+          <p>Se tratan como cualquier otra criptomoneda.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Qué pasa con las empresas?</summary>
+        <div class="faq-body">
+          <p>Si la empresa está usando FIFO para calcular sus ganancias por efectos de compraventa de criptomonedas, le podría servir esta guía y el Reporte de Ganancias. Aunque las reglas son un poco distintas, por lo que es mejor que lo veas bien con tu contador.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Qué le informamos nosotros (Buda) al SII sobre las operaciones de nuestros usuarios?</summary>
+        <div class="faq-body">
+          <p>Como empresa constituida en Chile y debido a nuestro giro, estamos obligados a enviar anualmente al SII una Declaración Jurada, la cual contiene el detalle de las compras, ventas, depósitos y retiros de criptomonedas realizadas en el Exchange por nuestros clientes. Esta es una obligación común para todos los exchanges, como <a href="http://www.buda.com/">Buda.com</a>, que operan en Chile.</p>
+          <p>Sin embargo, esto no quiere decir que en Chile declaramos las ganancias por ti. En la DJ no se incluyen cálculos de ganancias de ningún tipo, sólo montos en cripto y su equivalente en CLP al momento de las operaciones.</p>
+          <p>En ciertas ocasiones, el SII con la información que le envían las distintas instituciones, puede autocompletar algunas partes de la declaración. Sin embargo, la declaración es responsabilidad final de cada persona. Por lo tanto, tú mismo debes revisarla bien antes de aceptarla y enviarla.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Qué pasa si tuve pérdidas?</summary>
+        <div class="faq-body">
+          <p>La utilidad final del año tributario es el resultado de la suma de las utilidades de todas tus ventas durante el mismo. Algunas podrán tener pérdida y otras ganancias, por lo que se sumarán y restarán hasta llegar a un resultado final.</p>
+          <p>En el caso de pérdidas obtenidas por la compra/venta de criptomonedas por parte de una persona, estas se pueden compensar con ganancias del año por otras operaciones de capitales mobiliarios y ganancias de capital.</p>
+          <p>Si el resultado final es negativo, quiere decir que en total, no tuviste ganancias en el año reportado.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Qué pasa si no declaro?</summary>
+        <div class="faq-body">
+          <p>Recuerda que la obligación de declarar es tuya como contribuyente, por lo que si no declaras puedes tener problemas con el SII en caso de que tu declaración de renta sea fiscalizada y verte expuesto a multas.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Qué pasa si vendí mis criptos, pero no saqué la plata de Buda.com?</summary>
+        <div class="faq-body">
+          <p>La renta derivada de la venta de criptomonedas se entiende percibida cuando es puesta a disposición a través de cuentas virtuales proporcionadas por los intermediarios de este tipo de activos digitales. Por lo tanto, desde que realizas la venta y tu plata queda disponible en <a href="http://buda.com/">Buda.com</a>, debes calcular el mayor valor para efectos de calcular los impuestos.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Qué son las criptomonedas legalmente?</summary>
+        <div class="faq-body">
+          <p>Un activo digital o virtual, según el Oficio Ord. Nº963 del 14 de mayo de 2018 del SII.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Cómo se reajusta la ganancia por IPC?</summary>
+        <div class="faq-body">
+          <p>Al cálculo de la ganancia debemos incluir el efecto del IPC para que quede un valor completamente preciso. Para esto, debemos tomar en cuenta 2 períodos: (1) el período entre la compra y la venta y (2) el período entre la venta y fin del año.</p>
+          <p>Para el período entre la compra y la venta, por regla general, se toma en cuenta la variación del IPC desde el mes anterior a la compra hasta el mes anterior a la venta. Por ejemplo, si se compró en marzo y luego vendiste en octubre del mismo año, entonces se debe considerar la variación del IPC desde febrero hasta septiembre.</p>
+          <p>Luego, se debe reajustar la ganancia resultante considerando el período desde el mes de la venta hasta diciembre del año reportado.</p>
+          <p>Todo esto se consideró en el Reporte de Ganancias/Pérdidas.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Se pueden rebajar las comisiones pagadas al exchange en la determinación de mi utilidad tributable (mayor valor)?</summary>
+        <div class="faq-body">
+          <p>Respecto de las personas naturales que no están obligadas a determinar su renta efectiva según contabilidad completa, no pueden deducir las comisiones pagadas como parte del precio de compra al momento de la enajenación para efectos de la determinación del mayor valor. De hecho, así se consideran las comisiones en el Reporte de Ganancias/Pérdidas: no forman parte del precio de adquisición ni reducen el valor de enajenación.</p>
+          <p>Para el caso de las empresas es diferente, pudiendo rebajar estos costos por comisión de sus ganancias.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿La venta de criptomonedas o activos virtuales o digitales se encuentra afecta a IVA?</summary>
+        <div class="faq-body">
+          <p>No, la venta de criptomonedas o activos virtuales o digitales no se encuentra afecta a IVA.</p>
+        </div>
+      </details>
+
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <h2>¿Listo para generar tu reporte?</h2>
+    <p>Accede a tu cuenta en Buda.com y descarga tu Reporte de Ganancias/Pérdidas desde la sección Historial.</p>
+    <a href="http://buda.com/" class="btn">Ir a Buda.com</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <img src="images/budapuntocom_logo.jpeg" alt="Buda.com" style="height:36px; border-radius:8px; margin-bottom:12px; display:block; margin-left:auto; margin-right:auto;" />
+    <p>Esta guía es de carácter informativo y no constituye asesoría tributaria. &nbsp;·&nbsp; <a href="http://buda.com/">Buda.com</a></p>
+  </footer>
+
+</body>
+</html>
