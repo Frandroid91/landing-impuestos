@@ -320,6 +320,17 @@
       display: block;
     }
 
+    .content-list code {
+      background: var(--green-light);
+      color: var(--green-dark);
+      font-family: 'SFMono-Regular', Consolas, monospace;
+      font-size: 0.82rem;
+      padding: 2px 7px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-top: 4px;
+    }
+
     .img-caption {
       padding: 10px 16px;
       font-size: 0.8rem;
@@ -949,8 +960,8 @@
       <p><strong>Además:</strong></p>
 
       <ul class="content-list">
-        <li>Se ajusta el precio de adquisición según IPC, usando la variación entre el IPC del mes anterior a cada compra y el mes anterior a cada venta (como exige la normativa chilena).</li>
-        <li>La ganancia de cada venta se ajusta al cierre del año usando la variación entre el IPC del mes anterior a cada venta y el de diciembre del año correspondiente.</li>
+        <li>Se ajusta el precio de adquisición según IPC, usando la variación entre el IPC del mes anterior a cada compra y el mes anterior a cada venta (como exige la normativa chilena). <code>costo_ajustado = costo_original × (IPC_mes_anterior_venta / IPC_mes_anterior_compra)</code></li>
+        <li>La ganancia de cada venta se ajusta al cierre del año usando la variación entre el IPC del mes anterior a cada venta y el de diciembre del año correspondiente. <code>ganancia_cierre_año = ganancia_ajustada × (IPC_diciembre / IPC_mes_anterior_venta)</code></li>
         <li>Finalmente se calcula la ganancia o pérdida total del período.</li>
       </ul>
 
@@ -1083,6 +1094,8 @@
                 <th>Precio venta / BTC</th>
                 <th>Costo adquisición</th>
                 <th>Ganancia / Pérdida</th>
+                <th>Ganancia ajustada IPC</th>
+                <th>Ganancia a cierre de año</th>
               </tr>
             </thead>
             <tbody id="detail-body"></tbody>
@@ -1104,6 +1117,76 @@
       { type: 'buy',  date: '2024-07-08', qty: 0.2,  price: 28000000 },
       { type: 'sell', date: '2024-09-25', qty: 0.3,  price: 40000000 },
     ];
+
+    // ── IPC data (fuente: INE Chile) ──
+    const IPC = {
+      "2009-12":57.31,"2010-01":57.61,"2010-02":57.77,"2010-03":57.82,"2010-04":58.09,
+      "2010-05":58.30,"2010-06":58.30,"2010-07":58.67,"2010-08":58.62,"2010-09":58.85,
+      "2010-10":58.91,"2010-11":58.95,"2010-12":59.02,"2011-01":59.18,"2011-02":59.31,
+      "2011-03":59.77,"2011-04":59.96,"2011-05":60.20,"2011-06":60.30,"2011-07":60.38,
+      "2011-08":60.47,"2011-09":60.78,"2011-10":61.07,"2011-11":61.26,"2011-12":61.64,
+      "2012-01":61.69,"2012-02":61.93,"2012-03":62.03,"2012-04":62.06,"2012-05":62.08,
+      "2012-06":61.90,"2012-07":61.89,"2012-08":62.03,"2012-09":62.50,"2012-10":62.85,
+      "2012-11":62.57,"2012-12":62.55,"2013-01":62.67,"2013-02":62.74,"2013-03":62.98,
+      "2013-04":62.68,"2013-05":62.67,"2013-06":63.07,"2013-07":63.24,"2013-08":63.39,
+      "2013-09":63.73,"2013-10":63.82,"2013-11":64.06,"2013-12":64.44,"2014-01":64.56,
+      "2014-02":64.87,"2014-03":65.41,"2014-04":65.82,"2014-05":66.04,"2014-06":66.08,
+      "2014-07":66.23,"2014-08":66.44,"2014-09":67.00,"2014-10":67.70,"2014-11":67.71,
+      "2014-12":67.43,"2015-01":67.49,"2015-02":67.72,"2015-03":68.15,"2015-04":68.54,
+      "2015-05":68.66,"2015-06":69.00,"2015-07":69.29,"2015-08":69.76,"2015-09":70.11,
+      "2015-10":70.40,"2015-11":70.38,"2015-12":70.39,"2016-01":70.72,"2016-02":70.91,
+      "2016-03":71.18,"2016-04":71.42,"2016-05":71.58,"2016-06":71.90,"2016-07":72.07,
+      "2016-08":72.11,"2016-09":72.28,"2016-10":72.40,"2016-11":72.44,"2016-12":72.29,
+      "2017-01":72.68,"2017-02":72.86,"2017-03":73.14,"2017-04":73.31,"2017-05":73.40,
+      "2017-06":73.12,"2017-07":73.29,"2017-08":73.44,"2017-09":73.33,"2017-10":73.76,
+      "2017-11":73.83,"2017-12":73.93,"2018-01":74.27,"2018-02":74.31,"2018-03":74.46,
+      "2018-04":74.70,"2018-05":74.90,"2018-06":74.98,"2018-07":75.25,"2018-08":75.38,
+      "2018-09":75.63,"2018-10":75.91,"2018-11":75.91,"2018-12":75.83,"2019-01":75.91,
+      "2019-02":75.95,"2019-03":76.31,"2019-04":76.51,"2019-05":76.97,"2019-06":77.01,
+      "2019-07":77.18,"2019-08":77.32,"2019-09":77.33,"2019-10":77.96,"2019-11":78.03,
+      "2019-12":78.10,"2020-01":78.55,"2020-02":78.90,"2020-03":79.16,"2020-04":79.13,
+      "2020-05":79.09,"2020-06":79.03,"2020-07":79.11,"2020-08":79.22,"2020-09":79.72,
+      "2020-10":80.27,"2020-11":80.16,"2020-12":80.43,"2021-01":80.99,"2021-02":81.14,
+      "2021-03":81.45,"2021-04":81.75,"2021-05":81.97,"2021-06":82.04,"2021-07":82.70,
+      "2021-08":83.00,"2021-09":83.98,"2021-10":85.10,"2021-11":85.53,"2021-12":86.20,
+      "2022-01":87.23,"2022-02":87.48,"2022-03":89.11,"2022-04":90.35,"2022-05":91.43,
+      "2022-06":92.29,"2022-07":93.56,"2022-08":94.69,"2022-09":95.51,"2022-10":96.00,
+      "2022-11":96.94,"2022-12":97.21,"2023-01":98.00,"2023-02":97.93,"2023-03":99.00,
+      "2023-04":99.30,"2023-05":99.41,"2023-06":99.26,"2023-07":99.61,"2023-08":99.72,
+      "2023-09":100.39,"2023-10":100.84,"2023-11":101.59,"2023-12":101.04,"2024-01":101.72,
+      "2024-02":102.32,"2024-03":102.70,"2024-04":103.24,"2024-05":103.52,"2024-06":103.42,
+      "2024-07":104.19,"2024-08":104.45,"2024-09":104.54,"2024-10":105.56,"2024-11":105.83,
+      "2024-12":105.62,"2025-01":106.74,"2025-02":107.16,"2025-03":107.70,"2025-04":107.91,
+      "2025-05":108.12,"2025-06":107.68,"2025-07":108.62,"2025-08":108.66,"2025-09":109.14,
+      "2025-10":109.19,"2025-11":109.47,"2025-12":109.26
+    };
+
+    // ── IPC helpers ──
+    function ipcVal(ym) { return IPC[ym] || null; }
+
+    // "YYYY-MM-DD" → "YYYY-MM" of the previous month
+    function prevMonth(dateStr) {
+      const [y, m] = dateStr.split('-').map(Number);
+      if (m === 1) return `${y - 1}-12`;
+      return `${y}-${String(m - 1).padStart(2, '0')}`;
+    }
+
+    // Adjust cost of a lot from its buy date to the sell date
+    function ipcAdjustCost(cost, buyDate, sellDate) {
+      const iBuy  = ipcVal(prevMonth(buyDate));
+      const iSell = ipcVal(prevMonth(sellDate));
+      if (!iBuy || !iSell) return cost;
+      return cost * (iSell / iBuy);
+    }
+
+    // Adjust a gain to year-end using IPC of the sell month
+    function ipcAdjustToYearEnd(gain, sellDate) {
+      const year   = sellDate.substring(0, 4);
+      const iDec   = ipcVal(`${year}-12`);
+      const iPrevS = ipcVal(prevMonth(sellDate));
+      if (!iDec || !iPrevS) return gain;
+      return gain * (iDec / iPrevS);
+    }
 
     const tbody = document.getElementById('movements-body');
     const btnAdd = document.getElementById('btn-add-row');
@@ -1140,7 +1223,9 @@
       });
       const count = tbody.querySelectorAll('tr').length;
       btnAdd.disabled = count >= MAX_ROWS;
-      rowCountNote.textContent = count >= MAX_ROWS ? 'Máximo de 10 movimientos alcanzado.' : count + ' / ' + MAX_ROWS + ' movimientos';
+      rowCountNote.textContent = count >= MAX_ROWS
+        ? 'Máximo de 10 movimientos alcanzado.'
+        : count + ' / ' + MAX_ROWS + ' movimientos';
     }
 
     function updateTotal(tr) {
@@ -1202,88 +1287,104 @@
     }
 
     function calcFIFO(rows) {
-      // queue: [{qty, price}]
-      const queue = [];
+      const queue = []; // [{qty, price, date}]
       const details = [];
-      let totalGain = 0;
+      let totalGain = 0, totalGainYearEnd = 0;
 
       rows.forEach(r => {
         if (r.type === 'buy') {
-          queue.push({ qty: r.qty, price: r.price });
-          details.push({ ...r, costBasis: null, gain: null });
+          queue.push({ qty: r.qty, price: r.price, date: r.date });
+          details.push({ ...r, costBasis: null, costAdjusted: null, gain: null, gainIPC: null, gainYearEnd: null });
         } else {
-          // sell
           let remaining = r.qty;
-          let totalCost = 0;
+          let totalCost = 0, totalCostAdj = 0;
           while (remaining > 1e-10 && queue.length > 0) {
             const lot = queue[0];
             const used = Math.min(lot.qty, remaining);
-            totalCost += used * lot.price;
+            totalCost    += used * lot.price;
+            totalCostAdj += ipcAdjustCost(used * lot.price, lot.date, r.date);
             lot.qty -= used;
             remaining -= used;
             if (lot.qty < 1e-10) queue.shift();
           }
-          const gain = r.qty * r.price - totalCost;
-          totalGain += gain;
-          details.push({ ...r, costBasis: totalCost, gain });
+          const gain        = r.qty * r.price - totalCost;
+          const gainIPC     = r.qty * r.price - totalCostAdj;
+          const gainYearEnd = ipcAdjustToYearEnd(gainIPC, r.date);
+          totalGain        += gain;
+          totalGainYearEnd += gainYearEnd;
+          details.push({ ...r, costBasis: totalCost, costAdjusted: totalCostAdj, gain, gainIPC, gainYearEnd });
         }
       });
-      return { totalGain, details };
+      return { totalGain, totalGainYearEnd, details };
     }
 
     function calcLIFO(rows) {
-      // stack: [{qty, price}]
-      const stack = [];
+      const stack = []; // [{qty, price, date}]
       const details = [];
-      let totalGain = 0;
+      let totalGain = 0, totalGainYearEnd = 0;
 
       rows.forEach(r => {
         if (r.type === 'buy') {
-          stack.push({ qty: r.qty, price: r.price });
-          details.push({ ...r, costBasis: null, gain: null });
+          stack.push({ qty: r.qty, price: r.price, date: r.date });
+          details.push({ ...r, costBasis: null, costAdjusted: null, gain: null, gainIPC: null, gainYearEnd: null });
         } else {
           let remaining = r.qty;
-          let totalCost = 0;
+          let totalCost = 0, totalCostAdj = 0;
           while (remaining > 1e-10 && stack.length > 0) {
             const lot = stack[stack.length - 1];
             const used = Math.min(lot.qty, remaining);
-            totalCost += used * lot.price;
+            totalCost    += used * lot.price;
+            totalCostAdj += ipcAdjustCost(used * lot.price, lot.date, r.date);
             lot.qty -= used;
             remaining -= used;
             if (lot.qty < 1e-10) stack.pop();
           }
-          const gain = r.qty * r.price - totalCost;
-          totalGain += gain;
-          details.push({ ...r, costBasis: totalCost, gain });
+          const gain        = r.qty * r.price - totalCost;
+          const gainIPC     = r.qty * r.price - totalCostAdj;
+          const gainYearEnd = ipcAdjustToYearEnd(gainIPC, r.date);
+          totalGain        += gain;
+          totalGainYearEnd += gainYearEnd;
+          details.push({ ...r, costBasis: totalCost, costAdjusted: totalCostAdj, gain, gainIPC, gainYearEnd });
         }
       });
-      return { totalGain, details };
+      return { totalGain, totalGainYearEnd, details };
     }
 
     function calcCPP(rows) {
-      let totalQty = 0;
-      let totalCost = 0;
+      let totalQty = 0, totalCost = 0, weightedIPC = 0;
       const details = [];
-      let totalGain = 0;
+      let totalGain = 0, totalGainYearEnd = 0;
 
       rows.forEach(r => {
         if (r.type === 'buy') {
-          totalCost = totalCost + r.qty * r.price;
-          totalQty += r.qty;
-          details.push({ ...r, costBasis: null, gain: null });
+          const newCost = r.qty * r.price;
+          const ipcBuy  = ipcVal(prevMonth(r.date)) || 100;
+          // Update weighted IPC of inventory
+          weightedIPC = (totalCost + newCost) > 0
+            ? (totalCost * weightedIPC + newCost * ipcBuy) / (totalCost + newCost)
+            : ipcBuy;
+          totalCost += newCost;
+          totalQty  += r.qty;
+          details.push({ ...r, costBasis: null, costAdjusted: null, gain: null, gainIPC: null, gainYearEnd: null });
         } else {
           const avgCost = totalQty > 0 ? totalCost / totalQty : 0;
-          const cost = r.qty * avgCost;
-          const gain = r.qty * r.price - cost;
-          totalGain += gain;
+          const cost    = r.qty * avgCost;
+          const ipcSell = ipcVal(prevMonth(r.date));
+          const factor  = (weightedIPC && ipcSell) ? ipcSell / weightedIPC : 1;
+          const costAdj = cost * factor;
+          const gain        = r.qty * r.price - cost;
+          const gainIPC     = r.qty * r.price - costAdj;
+          const gainYearEnd = ipcAdjustToYearEnd(gainIPC, r.date);
+          totalGain        += gain;
+          totalGainYearEnd += gainYearEnd;
           totalCost -= cost;
-          totalQty -= r.qty;
-          if (totalQty < 0) totalQty = 0;
+          totalQty  -= r.qty;
+          if (totalQty  < 0) totalQty  = 0;
           if (totalCost < 0) totalCost = 0;
-          details.push({ ...r, costBasis: cost, gain });
+          details.push({ ...r, costBasis: cost, costAdjusted: costAdj, gain, gainIPC, gainYearEnd });
         }
       });
-      return { totalGain, details };
+      return { totalGain, totalGainYearEnd, details };
     }
 
     // ── Render results ──
@@ -1298,13 +1399,13 @@
         { key: 'cpp',  name: 'CPP',  sub: 'Costo Promedio Ponderado', note: '⚠️ Solo válido para empresas' },
       ];
 
-      // find best (highest gain) among fifo/lifo only
-      const gains = methods.map(m => results[m.key]?.totalGain ?? 0);
-      const maxGain = Math.max(gains[0], gains[1]);
+      const yearEndGains = methods.map(m => results[m.key]?.totalGainYearEnd ?? 0);
+      const maxGain = Math.max(yearEndGains[0], yearEndGains[1]);
 
       container.innerHTML = methods.map((m, i) => {
-        const g = results[m.key]?.totalGain;
-        const isBest = (m.key !== 'cpp') && Math.abs(g - maxGain) < 0.01;
+        const g   = results[m.key]?.totalGainYearEnd;
+        const raw = results[m.key]?.totalGain;
+        const isBest   = (m.key !== 'cpp') && Math.abs(g - maxGain) < 0.01;
         const gainClass = g > 0 ? 'gain' : g < 0 ? 'loss' : 'zero';
         return `
           <div class="result-card${isBest ? ' best' : ''}">
@@ -1312,7 +1413,8 @@
             <div class="result-card-label">Método</div>
             <div class="result-card-name">${m.name}<span>${m.sub}</span></div>
             <div class="result-amount ${gainClass}">${fmtCLP(g)}</div>
-            <div class="result-sublabel">Ganancia total estimada</div>
+            <div class="result-sublabel">Ganancia ajustada a cierre de año (a declarar)</div>
+            <div class="result-sublabel" style="margin-top:6px; color:#999; font-size:0.73rem;">Sin ajuste IPC: ${fmtCLP(raw)}</div>
             ${m.note ? `<div class="result-disclaimer">${m.note}</div>` : ''}
           </div>`;
       }).join('');
@@ -1323,29 +1425,31 @@
       const data = results[method];
       if (!data) { detailBody.innerHTML = ''; return; }
 
-      let totalGain = 0;
+      let totGain = 0, totGainIPC = 0, totGainYE = 0;
       const rows = data.details.map(r => {
-        if (r.type === 'sell') totalGain += r.gain;
         const isSell = r.type === 'sell';
-        const gainStr = isSell
-          ? `<span class="${r.gain >= 0 ? 'gain-cell' : 'loss-cell'}">${fmtCLP(r.gain)}</span>`
-          : `<span class="dash-cell">—</span>`;
-        const costStr = isSell ? fmtCLP(r.costBasis) : `<span class="dash-cell">—</span>`;
-        const priceStr = isSell ? fmtCLP(r.price) : `<span class="dash-cell">—</span>`;
+        if (isSell) { totGain += r.gain; totGainIPC += r.gainIPC; totGainYE += r.gainYearEnd; }
+
+        const dash = `<span class="dash-cell">—</span>`;
+        const gc   = v => v !== null ? `<span class="${v >= 0 ? 'gain-cell' : 'loss-cell'}">${fmtCLP(v)}</span>` : dash;
+
         return `<tr class="${isSell ? 'is-sell' : ''}">
           <td><span class="${isSell ? 'tag-sell' : 'tag-buy'}">${isSell ? 'Venta' : 'Compra'}</span></td>
           <td>${r.date}</td>
           <td>${fmtBTC(r.qty)} BTC</td>
-          <td>${priceStr}</td>
-          <td>${costStr}</td>
-          <td>${gainStr}</td>
+          <td>${isSell ? fmtCLP(r.price) : dash}</td>
+          <td>${isSell ? fmtCLP(r.costBasis) : dash}</td>
+          <td>${isSell ? gc(r.gain) : dash}</td>
+          <td>${isSell ? gc(r.gainIPC) : dash}</td>
+          <td>${isSell ? gc(r.gainYearEnd) : dash}</td>
         </tr>`;
       });
 
-      const totalClass = totalGain >= 0 ? 'gain-cell' : 'loss-cell';
       rows.push(`<tr class="detail-total-row">
-        <td colspan="5" style="text-align:right; padding-right:14px;">Total ganancia / pérdida del período</td>
-        <td><span class="${totalClass}">${fmtCLP(totalGain)}</span></td>
+        <td colspan="5" style="text-align:right; padding-right:14px; font-size:0.8rem; color:var(--text-light);">Totales</td>
+        <td><span class="${totGain    >= 0 ? 'gain-cell' : 'loss-cell'}">${fmtCLP(totGain)}</span></td>
+        <td><span class="${totGainIPC >= 0 ? 'gain-cell' : 'loss-cell'}">${fmtCLP(totGainIPC)}</span></td>
+        <td><span class="${totGainYE  >= 0 ? 'gain-cell' : 'loss-cell'}" style="font-size:1.05em;">${fmtCLP(totGainYE)}</span></td>
       </tr>`);
 
       detailBody.innerHTML = rows.join('');
