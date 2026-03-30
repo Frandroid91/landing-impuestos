@@ -821,6 +821,51 @@
       border-top: 2px solid var(--green);
     }
 
+    /* ── Page layout: sidebar + main ── */
+    .page-layout {
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      align-items: start;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 24px;
+      padding: 48px 20px 48px 0;
+    }
+
+    .sidebar .toc {
+      margin: 0;
+      background: var(--white);
+      border-left: 3px solid var(--green);
+      border-radius: 0 10px 10px 0;
+      padding: 18px 16px;
+    }
+
+    .sidebar .toc-title { font-size: 0.7rem; }
+    .sidebar .toc a     { font-size: 0.83rem; }
+
+    .page-main {
+      min-width: 0;
+      border-left: 1px solid var(--border);
+      padding-left: 48px;
+    }
+
+    .page-main .section,
+    .page-main .calc-section,
+    .page-main .faq-section {
+      max-width: 820px;
+    }
+
+    @media (max-width: 900px) {
+      .page-layout { grid-template-columns: 1fr; }
+      .sidebar     { display: none; }
+      .page-main   { border-left: none; padding-left: 0; }
+    }
+
     /* Responsive */
     @media (max-width: 600px) {
       .hero { padding: 48px 20px 56px; }
@@ -848,20 +893,29 @@
   </div>
 
   <!-- MAIN CONTENT -->
-  <div class="container">
+  <div class="page-layout">
 
-    <!-- TABLE OF CONTENTS -->
-    <div class="toc">
-      <p class="toc-title">Contenido</p>
-      <ol>
-        <li><a href="#operacion-renta">Operación Renta: ¿Cuándo debo declarar?</a></li>
-        <li><a href="#reporte">El Reporte de Ganancias/Pérdidas en Buda.com</a></li>
-        <li><a href="#declaracion">¿Cómo hacer la declaración?</a></li>
-        <li><a href="#calculadora">Calculadora de Ganancias</a></li>
-        <li><a href="#faq">Preguntas Frecuentes</a></li>
-      </ol>
-    </div>
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <!-- TABLE OF CONTENTS -->
+      <div class="toc">
+        <p class="toc-title">Contenido</p>
+        <ol>
+          <li><a href="#operacion-renta">Operación Renta: ¿Cuándo debo declarar?</a></li>
+          <li><a href="#reporte">El Reporte de Ganancias/Pérdidas en Buda.com</a></li>
+          <li><a href="#declaracion">¿Cómo hacer la declaración?</a></li>
+          <li><a href="#calculadora">Calculadora de Ganancias</a></li>
+          <li><a href="#faq">Preguntas Frecuentes</a></li>
+        </ol>
+      </div>
 
+
+    </aside>
+
+    <!-- PAGE MAIN -->
+    <div class="page-main">
+
+    <!-- SECTION 1 -->
     <!-- SECTION 1 -->
     <div class="section" id="operacion-renta">
       <span class="section-label">Operación Renta</span>
@@ -900,10 +954,9 @@
       <p>La ley permite los siguientes métodos para valorizar inventarios. Se puede elegir cualquier método, <strong>pero la ley exige mantenerlo por al menos 5 años.</strong></p>
 
       <div class="method-grid">
-        <div class="method-card highlight">
+        <div class="method-card">
           <h4>FIFO</h4>
           <p><em>First In, First Out:</em> lo primero que entra al inventario es lo primero que se vende. Es decir, se vende de lo más antiguo a lo más nuevo.</p>
-          <span class="badge badge-green">Método usado por Buda.com</span>
         </div>
         <div class="method-card">
           <h4>LIFO</h4>
@@ -914,11 +967,9 @@
           <p>Se calcula un precio promedio ponderado de todas tus compras hasta el momento de la venta. <strong>No es aceptado por el SII para personas naturales, sólo para empresas.</strong></p>
           <span class="badge badge-yellow">Solo empresas</span>
         </div>
-        <div class="method-card">
-          <h4>Elección por venta</h4>
-          <p>Incluso se puede "elegir" en cada venta qué criptos vendiste, siempre con el cuidado de no vender dos veces lo mismo. Eso sí, es mucho más complicado de explicar y <strong>sólo sirve para personas naturales.</strong></p>
-        </div>
       </div>
+
+      <p>Incluso, está permitido "elegir" en cada venta qué criptos vendiste, y en base a eso calcular el costo de adquisición, con el cuidado de no vender dos veces lo mismo. Este "método" <strong>sólo lo pueden usar personas naturales.</strong>, y consideramos que es mucho más complicado de explicar que los demás. </p>
 
       <div class="callout callout-warning">
         <p><strong>Cada método puede dar resultados distintos en el cálculo de la ganancia.</strong></p>
@@ -1043,10 +1094,8 @@
       </div>
     </div>
 
-  </div>
-
   <!-- CALCULATOR -->
-  <div class="container">
+
     <div class="calc-section" id="calculadora">
       <span class="section-label">Herramienta</span>
       <h2 class="section-title" style="margin-bottom:10px;">Calculadora de Ganancias</h2>
@@ -1103,7 +1152,6 @@
         </div>
       </div>
     </div>
-  </div>
 
   <script>
   (function () {
@@ -1493,7 +1541,7 @@
   </style>
 
   <!-- FAQ -->
-  <div class="container">
+
     <div class="faq-section" id="faq">
       <span class="section-label">FAQ</span>
       <h2 class="section-title" style="margin-bottom: 28px;">Preguntas Frecuentes</h2>
@@ -1609,9 +1657,11 @@
       </details>
 
     </div>
-  </div>
 
-  <!-- CTA -->
+    </div><!-- /page-main -->
+  </div><!-- /page-layout -->
+
+    <!-- CTA -->
   <div class="cta-section">
     <h2>¿Listo para generar tu reporte?</h2>
     <p>Accede a tu cuenta en Buda.com y descarga tu Reporte de Ganancias/Pérdidas desde la sección Historial.</p>
